@@ -10,15 +10,17 @@ from keras.layers.core import Dense, Dropout,Activation
 from keras.optimizers import RMSprop
 from keras.utils import np_utils
 
+from tkinter import *
+import tkinter.filedialog
+
 total_EEG_data_number=1000#读取n条EEG数据
 total_EEG_Features=24  #这是固定的。每一条EEG数据都有24个参数值。
 training_times=500 #训练的次数
 learn_rate=0.02 #学习率
 
-model=load_model('trained Mind Locker.h5')
+model=load_model('trained Mind Locker-ruanjiyang.h5')
 
-
-f = open('who_EEG.txt', 'r')
+f = open('ruanminli-2c.txt', 'r')
 All_EEG_data_lines=f.readlines()
 EEG_data_for_test=np.zeros([total_EEG_data_number,total_EEG_Features])
 
@@ -36,7 +38,7 @@ print(test)
 match_counter=0
 
 for k in range(total_EEG_data_number):
-    if test[i]>=0.8:
+    if test[k]>=0.8:
         match_counter+=1
 print(match_counter)
 print("total match rate=", match_counter/total_EEG_data_number*100,"%")
